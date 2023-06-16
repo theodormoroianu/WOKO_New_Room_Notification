@@ -1,4 +1,4 @@
-# WOKO_New_Room_Notification
+# WOKO New Room Notifier
 
 _Python script sending push notifications whenever a new room is published on the WOKO (student asociation for housing in Zurich) website._
 

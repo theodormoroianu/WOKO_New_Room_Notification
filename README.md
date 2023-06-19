@@ -18,7 +18,7 @@ Steps for running the script locally are:
 
 1. Install `bs4` and `lxml` with `pip3 install bs4 lxml` or `pip3 install -r requirements.txt`.
 2. Install the push-notification app companion, [**Ntfy.sh**](https://ntfy.sh/). The Android app is [here](https://play.google.com/store/apps/details?id=io.heckel.ntfy).
-3. Open the **Ntfy.sh** app, and add subscribe to the topic "_cazare_woko_" (or whatever string is at the top of [scraper.py](./scraper.py)).
+3. Open the **Ntfy.sh** app, and add subscribe to the topic "_cazare_woko_" (or whatever string you replaced it with at the top of [scraper.py](./scraper.py)).
 4. Run the `scraper.py` file, with `python3 scraper.py`.
 5. ???
 6. Enjoy

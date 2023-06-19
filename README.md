@@ -2,7 +2,9 @@
 
 _Python script sending push notifications whenever a new room is published on the WOKO (student asociation for housing in Zurich) website._
 
-![Sample Notifications](notification_sample.jpg)
+<p align="center">
+  <img src="notification_sample.jpg" width="450" title="Sample Notifications">
+</p>
 
 ## What this Script Does
 

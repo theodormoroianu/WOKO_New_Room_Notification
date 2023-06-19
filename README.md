@@ -2,6 +2,8 @@
 
 _Python script sending push notifications whenever a new room is published on the WOKO (student asociation for housing in Zurich) website._
 
+![Sample Notifications](notification_sample.jpg)
+
 ## What this Script Does
 
 This script continuously fetches the WOKO website for rooms available in Zurich. Whenever a new room is available, the script sends a push notification to phones properly set-up (in a subscriber / publisher fashion).
@@ -31,5 +33,5 @@ As it's really tiny, any VM will work, including the free ones given by AWS or O
 4. Install `bs4` and `lxml` by running `pip3 install bs4 lxml`.
 4. Open a `TMUX` shell. This ensures the script keeps running even after closing the terminal: `tmux new -s "scraper"`.
 5. Run the scraper: `python3 scraper.py`.
-6. Exit from the tmux shell, by either closing the terminal, or pressing `CTRL+B` followed by `D`. DO NOT type `exit`, as it will terminate the shell.
+6. Exit from the tmux shell, by either closing the terminal, or pressing `CTRL+B` followed by `D`. DO NOT type `CTRL+C`, as it will terminate the python app.
 7. For attaching back to the TMUX shell, simply type in the SSH window `tmux attach -t "scraper"`.

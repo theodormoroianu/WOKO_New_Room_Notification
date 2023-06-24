@@ -71,6 +71,7 @@ def scrape():
 
 raised_exception = False
 nr_fetched, nr_failures = 0, 0
+last_heatbeat = time.time()
 
 send_notification("Scraper Started", f"Started scraping every {WAIT_TIME}s")
 
@@ -80,10 +81,12 @@ while True:
     try:
         last_fetch_size = scrape()
     except Exception as e:
+        nr_failures += 1
+        # If an exception was already sent, don't spam the users.
         if raised_exception:
+            print(f"Suppressed error: {e}")
             continue
         else:
-            nr_failures += 1
             raised_exception = True
             print(f"Error: {e}")
             send_notification("ERROR", f"Failed to fetch data: {e}")
@@ -92,8 +95,10 @@ while True:
         f"Fetched for {nr_fetched} times, with {nr_failures} errors. Last fetch parsed {last_fetch_size} items."
     )
 
-    if nr_fetched * WAIT_TIME % HEARTBEAT_EVERY == 0:
+    if time.time() - last_heatbeat > HEARTBEAT_EVERY == 0:
         send_notification(
             "Heatbeat", f"Fetched {nr_fetched} times, encountered {nr_failures} errors."
         )
+        last_heatbeat = time.time()
+        
     time.sleep(WAIT_TIME)

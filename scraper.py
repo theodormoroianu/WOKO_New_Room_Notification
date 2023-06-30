@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import bs4
 import time
+import sys
 
 #######################################################
 #                     PARAMETERS                      #
@@ -20,6 +21,10 @@ HEARTBEAT_EVERY = 60 * 60 * 24
 # This has to be the same channel (in that case "cazare_woko") as the
 # one specified in the android / iOS application.
 NTFY_CHANNEL = "https://ntfy.sh/cazare_woko"
+
+# Ignores room announcements containing the string "Sublet", as they are
+# most probably sublets for the summer, and not main tenant announcements.
+IGNORE_SUBLET = True
 
 #######################################################
 #                  END OF PARAMETERS                  #
@@ -60,6 +65,8 @@ def scrape():
     for d in data:
         if d not in listed:
             listed.add(d)
+            if IGNORE_SUBLET and "Sublet" in d[0]:
+                continue
             send_notification(d[0] + " " + d[1], f"Price: {d[3]}, Address: {d[2]}")
 
     listed = set()
@@ -73,7 +80,8 @@ raised_exception = False
 nr_fetched, nr_failures = 0, 0
 last_heatbeat = time.time()
 
-send_notification("Scraper Started", f"Started scraping every {WAIT_TIME}s")
+start_message = f"Message: {sys.argv[1]}" if len(sys.argv) > 1 else ""
+send_notification("Scraper Started", f"Started scraping every {WAIT_TIME}s\n{start_message}")
 
 while True:
     nr_fetched += 1

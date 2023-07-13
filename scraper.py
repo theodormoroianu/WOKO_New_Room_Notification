@@ -103,7 +103,7 @@ while True:
         f"Fetched for {nr_fetched} times, with {nr_failures} errors. Last fetch parsed {last_fetch_size} items."
     )
 
-    if time.time() - last_heatbeat > HEARTBEAT_EVERY == 0:
+    if time.time() - last_heatbeat > HEARTBEAT_EVERY:
         send_notification(
             "Heatbeat", f"Fetched {nr_fetched} times, encountered {nr_failures} errors."
         )
